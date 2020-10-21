@@ -1,18 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./pages/index.css"/>
-    <title>Document</title>
+    <link href="./pages/index.css" rel="stylesheet"/>
+    <title>Mesto</title>
 </head>
-<body>
+<body class="body">
     <div class="root">
-        <header class="header"></header>
+        <header class="header">
+            <img src="images/logo.svg" class="logo" alt="Логотип Mesto"/>
+        </header>
         <main class="main">
-            <div class="profile"></div>
+            <section class="profile">
+                <img src="images/avatar.jpg" class="avatar" alt="Аватар"/>
+                <div class="profile-info">
+                    <h2 class="profile-info__full-name">Жак-Ив Кусто</h2> 
+                    <button class="edit-button opacity"></button>
+                    <p class="profile-info__occupation">Исследователь океана</p>
+                </div>
+                <button class="add-button opacity"></button>
+            </section>
+            <section class="cards">
+                <ul class="cards__block">
+                    <li class="card">
+                        <img src="./images/places/baykal.jpg" alt="Фото Байкала" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__title">Байкал</h3>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/places/dombay.jpg" alt="Фото Домбая" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__title">Домбай</h3>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/places/elbruse.jpg" alt="Фото горы Эльбрус" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__title">Гора Эльбрус</h3>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/places/karachaevsk.jpg" alt="Фото Карачаево-Черкеска" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__title">Карачаево-Черкеск</h3>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/places/karelia.jpg" alt="Фото Байкала" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__title">Байкала</h3>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/places/kavkaz.jpg" alt="Фото Кавказа" class="card__image">
+                        <div class="card__content">
+                            <h3 class="card__title">Кавказ</h3>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+            </section>
         </main>
-        <footer class="footer"></footer>
+        <footer class="footer">
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+        </footer>
+    </div>
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__close opacity"></button>
+            <form class="popup__form" action="#" method="POST">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input type="text" class="popup__full-name">
+                <input type="text" class="popup__occupation">
+                <input type="submit" value="Сохранить" class="popup__submit opacity">
+            </form>
+        </div>
     </div>
 </body>
 </html>

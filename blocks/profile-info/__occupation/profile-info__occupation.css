@@ -1,0 +1,15 @@
+.profile-info__occupation{
+    font-family: "Inter", serif;
+    font-size: 18px;
+    line-height: 22px;
+    color: #fff;
+    font-weight: 400;
+    margin: 0;
+}
+
+@media (max-width: 768px){
+    .profile-info__occupation{
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
