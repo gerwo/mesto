@@ -1,5 +1,7 @@
 .profile__info{
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (max-width:768px){
