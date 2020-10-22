@@ -1,4 +1,4 @@
-.popup___opened{
+.popup_opened{
     visibility: visible;
     opacity: 1;
     transition: opacity ease-out 0.3s;

@@ -26,7 +26,7 @@ function formSubmitHandler(evt){
 }
 
 function visiblePopUp(){
-    popUp.classList.toggle('popup___opened');
+    popUp.classList.toggle('popup_opened');
 }
 
 editButton.addEventListener('click', openEditForm);
