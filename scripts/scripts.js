@@ -5,8 +5,8 @@ let jobInput = formElement.querySelector('.popup__input_margin_s');
 let fullName = document.querySelector('.profile__full-name');
 let occupation = document.querySelector('.profile__occupation');
 
-let closeButton = document.querySelector('.popup__close');
-let editButton = document.querySelector('.edit-button');
+let closeButton = document.querySelector('.button__type_close');
+let editButton = document.querySelector('.button__type_edite-profile');
 let popUp = document.querySelector('.popup');
 
 
