@@ -1,6 +1,6 @@
 .card__content{
     display: grid;
     grid-template: 1fr / 4fr 1fr;
-    padding: 25px 21px 31px;
+    padding: 21px 21px 25px;
     align-items: center;
 }
