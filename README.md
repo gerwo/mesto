@@ -1,6 +1,6 @@
 # Проект 4: Mesto
 
-В проекте ["Mesto"](https://gerwo.github.io/mesto/index.html) первый мой проект с использованием чистого js кода. 
+Проект ["Mesto"](https://gerwo.github.io/mesto/index.html) - это первый мой проект с использованием чистого js кода. 
 
 Данный проект из Яндекс Практикум.
 
