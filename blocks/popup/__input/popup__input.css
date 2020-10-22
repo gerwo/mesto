@@ -1,4 +1,4 @@
-.popup__full-name{
+.popup__input{
     width: 100%;
     height: 28px;
     box-sizing: border-box;
@@ -7,12 +7,5 @@
     border-left: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     outline: none;
-    margin-top: 47px;
     padding-bottom: 7px;
-}
-
-@media (max-width:468px){
-    .popup__full-name{
-        margin-top: 73px;
-    }
 }

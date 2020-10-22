@@ -1,6 +1,6 @@
 let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__full-name');
-let jobInput = formElement.querySelector('.popup__occupation');
+let nameInput = formElement.querySelector('.popup__input_margin_m');
+let jobInput = formElement.querySelector('.popup__input_margin_s');
 
 let fullName = document.querySelector('.profile__full-name');
 let occupation = document.querySelector('.profile__occupation');
@@ -9,9 +9,14 @@ let closeButton = document.querySelector('.popup__close');
 let editButton = document.querySelector('.edit-button');
 let popUp = document.querySelector('.popup');
 
+
+function visiblePopUp(){
+    popUp.classList.toggle('popup_opened');
+}
+
 function openEditForm(){
-    nameInput.value = fullName.innerText;
-    jobInput.value = occupation.innerText;
+    nameInput.value = fullName.textContent;
+    jobInput.value = occupation.textContent;
 
     visiblePopUp();
 }
@@ -19,14 +24,10 @@ function openEditForm(){
 function formSubmitHandler(evt){
     evt.preventDefault();
 
-    fullName.innerText = nameInput.value;
-    occupation.innerText = jobInput.value;
+    fullName.textContent = nameInput.value;
+    occupation.textContent = jobInput.value;
 
     visiblePopUp();
-}
-
-function visiblePopUp(){
-    popUp.classList.toggle('popup_opened');
 }
 
 editButton.addEventListener('click', openEditForm);

@@ -15,8 +15,8 @@
             <section class="profile">
                 <img src="images/avatar.jpg" class="profile__avatar" alt="Аватар"/>
                 <div class="profile__info">
-                    <h2 class="profile__full-name">Жак-Ив Кусто</h2> 
-                    <button class="edit-button opacity"></button>
+                    <h1 class="profile__full-name">Жак-Ив Кусто</h1>
+                    <button class="edit-button opacity" aria-label="edit"></button>
                     <p class="profile__occupation">Исследователь океана</p>
                 </div>
                 <button class="add-button opacity"></button>
@@ -26,43 +26,43 @@
                     <li class="card">
                         <img src="./images/places/baykal.jpg" alt="Фото Байкала" class="card__image">
                         <div class="card__content">
-                            <h3 class="card__title">Байкал</h3>
-                            <button class="card__like-button"></button>
+                            <h2 class="card__title">Байкал</h2>
+                            <button class="card__like-button opacity"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img src="./images/places/dombay.jpg" alt="Фото Домбая" class="card__image">
                         <div class="card__content">
-                            <h3 class="card__title">Домбай</h3>
-                            <button class="card__like-button"></button>
+                            <h2 class="card__title">Домбай</h2>
+                            <button class="card__like-button opacity"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img src="./images/places/elbruse.jpg" alt="Фото горы Эльбрус" class="card__image">
                         <div class="card__content">
-                            <h3 class="card__title">Гора Эльбрус</h3>
-                            <button class="card__like-button"></button>
+                            <h2 class="card__title">Гора Эльбрус</h2>
+                            <button class="card__like-button opacity"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img src="./images/places/karachaevsk.jpg" alt="Фото Карачаево-Черкеска" class="card__image">
                         <div class="card__content">
-                            <h3 class="card__title">Карачаево-Черкеск</h3>
-                            <button class="card__like-button"></button>
+                            <h2 class="card__title">Карачаево-Черкеск</h2>
+                            <button class="card__like-button opacity"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img src="./images/places/karelia.jpg" alt="Фото Байкала" class="card__image">
                         <div class="card__content">
-                            <h3 class="card__title">Байкала</h3>
-                            <button class="card__like-button"></button>
+                            <h2 class="card__title">Байкала</h2>
+                            <button class="card__like-button opacity"></button>
                         </div>
                     </li>
                     <li class="card">
                         <img src="./images/places/kavkaz.jpg" alt="Фото Кавказа" class="card__image">
                         <div class="card__content">
-                            <h3 class="card__title">Кавказ</h3>
-                            <button class="card__like-button"></button>
+                            <h2 class="card__title">Кавказ</h2>
+                            <button class="card__like-button opacity"></button>
                         </div>
                     </li>
                 </ul>
@@ -74,12 +74,12 @@
     </div>
     <div class="popup" role="dialog">
         <div class="popup__container">
-            <button class="popup__close opacity"></button>
-            <form class="popup__form" action="#" method="POST">
+            <button class="popup__close opacity" aria-label="close"></button>
+            <form class="popup__form" action="#" method="POST" name="edit-form">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__full-name">
-                <input type="text" class="popup__occupation">
-                <input type="submit" value="Сохранить" class="popup__submit opacity">
+                <input type="text" class="popup__input popup__input_margin_m" name="full-name">
+                <input type="text" class="popup__input popup__input_margin_s" name="occupation">
+                <button type="submit"  class="popup__submit opacity">Сохранить</button>
             </form>
         </div>
     </div>
