@@ -1,4 +1,4 @@
-.profile-info__occupation{
+.profile__occupation{
     font-family: "Inter", serif;
     font-size: 18px;
     line-height: 22px;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 768px){
-    .profile-info__occupation{
+    .profile__occupation{
         font-size: 14px;
         line-height: 17px;
     }

@@ -6,10 +6,10 @@
 @import url('../blocks/header/header.css');
 @import url('../blocks/main/main.css');
 @import url('../blocks/profile/profile.css');
-@import url('../blocks/avatar/avatar.css');
-@import url('../blocks/profile-info/profile-info.css');
-@import url('../blocks/profile-info/__full-name/profile-info__full-name.css');
-@import url('../blocks/profile-info/__occupation/profile-info__occupation.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__full-name/profile-info__full-name.css');
+@import url('../blocks/profile/__occupation/profile-info__occupation.css');
 @import url('../blocks/add-button/add-button.css');
 @import url('../blocks/edit-button/edit-button.css');
 @import url('../blocks/cards/cards.css');
