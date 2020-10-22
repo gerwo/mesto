@@ -1,4 +1,4 @@
-.button__type_edite-profile{
+.button_type_edite-profile{
     background: #000 url(../../../images/edit.svg) center center no-repeat;
     width: 24px;
     height: 24px;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width:768px){
-    .button__type_edite-profile{
+    .button_type_edite-profile{
         width: 18px;
         height: 18px;
         margin-left: 4px;
