@@ -1,6 +1,6 @@
 let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__input_margin_m');
-let jobInput = formElement.querySelector('.popup__input_margin_s');
+let nameInput = formElement.querySelector('.popup__input_full-name');
+let jobInput = formElement.querySelector('.popup__input_occupation');
 
 let fullName = document.querySelector('.profile__full-name');
 let occupation = document.querySelector('.profile__occupation');

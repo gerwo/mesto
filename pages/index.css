@@ -7,11 +7,12 @@
 @import url('../blocks/main/main.css');
 @import url('../blocks/logo/logo.css');
 @import url('../blocks/profile/profile.css');
-@import url('../blocks/button/_type_add-card/button_type_add-card.css');
-@import url('../blocks/button/_type_close/button_type_close.css');
-@import url('../blocks/button/_type_edite-profile/button_type_edite-profile.css');
-@import url('../blocks/button/_type_like/button_type_like.css');
-@import url('../blocks/button/_type_submit/button_type_submit.css');
+@import url('../blocks/button/button.css');
+@import url('../blocks/button/_type/button_type_add-card.css');
+@import url('../blocks/button/_type/button_type_close.css');
+@import url('../blocks/button/_type/button_type_edite-profile.css');
+@import url('../blocks/button/_type/button_type_like.css');
+@import url('../blocks/button/_type/button_type_submit.css');
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__full-name/profile-info__full-name.css');

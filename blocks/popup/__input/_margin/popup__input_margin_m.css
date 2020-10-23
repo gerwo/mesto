@@ -1,9 +1,0 @@
-.popup__input_margin_m{
-    margin-top: 47px;
-}
-
-@media (max-width:468px){
-    .popup__input_margin_m{
-        margin-top: 73px;
-    }
-}
