@@ -1,13 +1,19 @@
+<<<<<<< HEAD
 let formElement = document.querySelector('.popup__form');
 let nameInput = formElement.querySelector('.popup__input_full-name');
 let jobInput = formElement.querySelector('.popup__input_occupation');
+=======
+const formElement = document.querySelector('.popup__form');
+const nameInput = formElement.querySelector('.popup__input_margin_m');
+const jobInput = formElement.querySelector('.popup__input_margin_s');
+>>>>>>> bugfix
 
-let fullName = document.querySelector('.profile__full-name');
-let occupation = document.querySelector('.profile__occupation');
+const fullName = document.querySelector('.profile__full-name');
+const occupation = document.querySelector('.profile__occupation');
 
-let closeButton = document.querySelector('.button_type_close');
-let editButton = document.querySelector('.button_type_edite-profile');
-let popUp = document.querySelector('.popup');
+const closeButton = document.querySelector('.button_type_close');
+const editButton = document.querySelector('.button_type_edite-profile');
+const popUp = document.querySelector('.popup');
 
 
 function visiblePopUp(){
