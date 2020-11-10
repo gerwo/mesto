@@ -1,15 +1,13 @@
-.edit-button{
-    background: #000 url(../../images/edit.svg) center center no-repeat;
+.button_type_edite-profile{
+    background: #000 url(../../../images/edit.svg) center center no-repeat;
     width: 24px;
     height: 24px;
     border: 1px solid #fff;
-    cursor: pointer;
-    outline: none;
     margin-left: 17px;
 }
 
 @media (max-width:768px){
-    .edit-button{
+    .button_type_edite-profile{
         width: 18px;
         height: 18px;
         margin-left: 4px;
