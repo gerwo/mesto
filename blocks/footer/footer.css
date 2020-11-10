@@ -1,5 +1,6 @@
 .footer{
     padding: 66px 0 60px;
+    flex: 0 0 auto;
 }
 
 @media(max-width:920px) and (min-width:882px){

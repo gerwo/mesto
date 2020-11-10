@@ -7,11 +7,16 @@
     right: 0;
     align-items: center;
     justify-content: center;
-    display: none;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s, visibility .5s;
+    -webkit-transition: opacity .5s, visibility .5s;
+    -moz-transition: opacity .5s, visibility .5s;
 }
 
 @media (max-width:468px){
     .popup{
-        padding: 0 19px;
+        padding: 0 40px;
     }
 }

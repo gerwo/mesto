@@ -1,10 +1,10 @@
 .button_type_close{
-    background: url("../../../images/close.svg") center center no-repeat;
+    background: url(../../../images/close.svg) center center no-repeat;
     background-size: cover;
-    width: 55px;
-    height: 55px;
-    right: -43px;
-    top: -43px;
+    width: 41px;
+    height: 41px;
+    right: -35px;
+    top: -35px;
     position: absolute;
     border: 0;
     padding: 0;
@@ -14,7 +14,7 @@
     .button_type_close{
         width: 34px;
         height: 34px;
-        right: 0px;
-        top: -50px;
+        right: -28px;
+        top: -28px;
     }
 }

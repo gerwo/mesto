@@ -22,70 +22,56 @@
                 <button class="button button_type_add-card opacity" aria-label="Добавить карточку" type="button"></button>
             </section>
             <section class="cards">
-                <ul class="cards__block">
-                    <li class="card">
-                        <img src="./images/places/baykal.jpg" alt="Фото Байкала" class="card__image">
-                        <div class="card__content">
-                            <h2 class="card__title">Байкал</h2>
-                            <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/places/dombay.jpg" alt="Фото Домбая" class="card__image">
-                        <div class="card__content">
-                            <h2 class="card__title">Домбай</h2>
-                            <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/places/elbruse.jpg" alt="Фото горы Эльбрус" class="card__image">
-                        <div class="card__content">
-                            <h2 class="card__title">Гора Эльбрус</h2>
-                            <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/places/karachaevsk.jpg" alt="Фото Карачаево-Черкеска" class="card__image">
-                        <div class="card__content">
-                            <h2 class="card__title">Карачаево-Черкеск</h2>
-                            <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/places/karelia.jpg" alt="Фото Байкала" class="card__image">
-                        <div class="card__content">
-                            <h2 class="card__title">Байкала</h2>
-                            <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <img src="./images/places/kavkaz.jpg" alt="Фото Кавказа" class="card__image">
-                        <div class="card__content">
-                            <h2 class="card__title">Кавказ</h2>
-                            <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="cards__block"></ul>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
     </div>
-    <div class="popup" role="dialog">
+
+    <div class="popup popup_add-new-card" role="dialog">
         <div class="popup__container">
             <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
-<<<<<<< HEAD
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form form_add-new-card" action="#" method="POST" name="edit-form">
+                <input type="text" class="popup__input popup__input_image-title" name="image-title" placeholder="Название">
+                <input type="text" class="popup__input popup__input_image-link" name="image-link" placeholder="Ссылка на картинку">
+                <button type="submit"  class="button button_type_submit opacity">Создать</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="popup popup_edite-profile" role="dialog">
+        <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-=======
->>>>>>> bugfix
-            <form class="popup__form" action="#" method="POST" name="edit-form">
-                <input type="text" class="popup__input popup__input_full-name" name="full-name">
-                <input type="text" class="popup__input popup__input_occupation" name="occupation">
+            <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+            <form class="popup__form form_edite-profile" action="#" method="POST" name="edit-form">
+                <input type="text" class="popup__input popup__input_full-name" name="full-name" placeholder="ФИО">
+                <input type="text" class="popup__input popup__input_occupation" name="occupation" placeholder="Род деятельности">
                 <button type="submit"  class="button button_type_submit opacity">Сохранить</button>
             </form>
         </div>
     </div>
+
+    <div class="popup popup_show-image" role="dialog">
+        <div class="popup__image-container">
+            <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+            <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" class="popup__image"/>
+            <h2 class="popup__image-title">asdasdasd</h2>
+        </div>
+    </div>
+
+    <template id="card-template">
+        <li class="card">
+            <img class="card__image" src="">
+            <div class="card__content">
+                <h2 class="card__title"></h2>
+                <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
+            </div>
+            <button class="button button_type_delete-card opacity"></button>
+        </li>
+    </template>
     <script src="./scripts/scripts.js" ></script>
 </body>
 </html>
