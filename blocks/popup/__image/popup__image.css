@@ -1,10 +1,4 @@
 .popup__image{
-    
-}
-
-@media (max-width: 1024px){
-    .popup__image{
-        height: auto;
-        
-    }
+    max-width: 75vw;
+    max-height: 75vh;
 }
