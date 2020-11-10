@@ -41,7 +41,6 @@ const editButton = document.querySelector('.button_type_edite-profile');
 const editPopUp = document.querySelector('.popup_edite-profile');
 
 
-
 const deleteNode = (node) => {
     node.remove();
 }
@@ -125,7 +124,6 @@ const formSubmitNewCard = (evt) => {
     imgTitle.value = '';
     imgLink.value = '';
 }
-
 
 const formSubmitHandler = (evt) => {
     evt.preventDefault();
