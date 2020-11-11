@@ -90,7 +90,6 @@ const addCard = (obj, node, position) => {
     });
     
     position === 'append' ? node.append(cardNode) : node.prepend(cardNode);
-
 }
 
 const showImagePopup = (name, link) => {
