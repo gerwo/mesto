@@ -15,7 +15,7 @@
     -moz-transition: opacity .5s, visibility .5s;
 }
 
-@media (max-width:468px){
+@media (max-width:520px){
     .popup{
         padding: 0 40px;
     }
