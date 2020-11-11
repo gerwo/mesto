@@ -1,7 +1,11 @@
 .header{
     padding-top: 45px;
     min-height: 74px;
+<<<<<<< HEAD
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+=======
+    border-bottom: 1px solid #545454;
+>>>>>>> develop
     flex: 0 0 auto;
 }
 

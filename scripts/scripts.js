@@ -30,7 +30,11 @@ const formAddNewCard = document.querySelector('.form_add-new-card');
 const addCardPopUp = document.querySelector('.popup_add-new-card');
 const cardTemplate = document.querySelector('#card-template');
 const cardsNode = document.querySelector('.cards__block');
+<<<<<<< HEAD
 const imageNode = document.querySelector('.popup_show-image');
+=======
+const imageNode = document.querySelector('.popup__image-substrate');
+>>>>>>> develop
 
 const formEditeProfile = document.querySelector('.form_edite-profile');
 const fullName = document.querySelector('.profile__full-name');
@@ -41,6 +45,7 @@ const editButton = document.querySelector('.button_type_edite-profile');
 const editPopUp = document.querySelector('.popup_edite-profile');
 
 
+<<<<<<< HEAD
 
 const deleteNode = (node) => {
     node.remove();
@@ -94,6 +99,60 @@ const addCard = (obj, node, position) => {
 
 }
 
+=======
+const deleteNode = (node) => {
+    node.remove();
+}
+
+const visiblePopUp = (node) => {
+    node.classList.toggle('popup_opened');
+}
+
+const openAddCardForm = () => {
+    visiblePopUp(addCardPopUp);
+}
+
+const openEditForm = () => {    
+    nameInput.value = fullName.textContent;
+    jobInput.value = occupation.textContent;
+
+    visiblePopUp(editPopUp);
+}
+
+const addCards = (mass, node, position) => {
+    mass.forEach((item) => {
+        addCard(item, node, position);
+    });
+}
+
+const addCard = (obj, node, position) => {
+    const cardNode = cardTemplate.content.cloneNode(true);
+    const cardImage = cardNode.querySelector('.card__image');
+    
+    cardNode.querySelector('.card__title').textContent = obj.name;
+    
+    cardImage.src = obj.link;
+    cardImage.alt = obj.name;
+
+    cardImage.addEventListener('click', () => {
+        showImagePopup(obj.name, obj.link);
+    });
+    
+    cardNode.querySelector('.button_type_like').addEventListener('click', (evt) => {
+        const theTarget = evt.target;
+        theTarget.classList.toggle('button_type_like_active');
+    });
+
+    cardNode.querySelector('.button_type_delete-card').addEventListener('click', (evt) => {
+        const theTarget = evt.target.closest('.card');
+        deleteNode(theTarget)
+    });
+    
+    position === 'append' ? node.append(cardNode) : node.prepend(cardNode);
+
+}
+
+>>>>>>> develop
 const showImagePopup = (name, link) => {
     
     const image = imageNode.querySelector('.popup__image');
@@ -126,7 +185,10 @@ const formSubmitNewCard = (evt) => {
     imgLink.value = '';
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 const formSubmitHandler = (evt) => {
     evt.preventDefault();
 
