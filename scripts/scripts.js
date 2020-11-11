@@ -30,7 +30,7 @@ const formAddNewCard = document.querySelector('.form_add-new-card');
 const addCardPopUp = document.querySelector('.popup__form_add-new-card');
 const cardTemplate = document.querySelector('#card-template');
 const cardsNode = document.querySelector('.cards__block');
-const imageNode = document.querySelector('.popup__image-substrate');
+const imageNode = document.querySelector('.popup_image-substrate');
 
 const formEditeProfile = document.querySelector('.popup__form_edite-profile');
 const fullName = document.querySelector('.profile__full-name');
