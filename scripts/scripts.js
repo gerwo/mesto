@@ -27,12 +27,12 @@ const initialCards = [
 
 const addCardButton = document.querySelector('.button_type_add-card');
 const formAddNewCard = document.querySelector('.form_add-new-card');
-const addCardPopUp = document.querySelector('.popup_add-new-card');
+const addCardPopUp = document.querySelector('.popup__form_add-new-card');
 const cardTemplate = document.querySelector('#card-template');
 const cardsNode = document.querySelector('.cards__block');
 const imageNode = document.querySelector('.popup__image-substrate');
 
-const formEditeProfile = document.querySelector('.form_edite-profile');
+const formEditeProfile = document.querySelector('.popup__form_edite-profile');
 const fullName = document.querySelector('.profile__full-name');
 const nameInput = document.querySelector('.popup__input_full-name');
 const occupation = document.querySelector('.profile__occupation');
