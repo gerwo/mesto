@@ -1,19 +1,10 @@
 .button_type_close{
-<<<<<<< HEAD
-    background: url(../../../images/close.svg) center center no-repeat;
-    background-size: cover;
-    width: 41px;
-    height: 41px;
-    right: -35px;
-    top: -35px;
-=======
     background: url("../../../images/close.svg") center center no-repeat;
     background-size: cover;
     width: 56px;
     height: 56px;
     right: -46px;
     top: -46px;
->>>>>>> develop
     position: absolute;
     border: 0;
     padding: 0;
@@ -21,16 +12,9 @@
 
 @media (max-width: 500px){
     .button_type_close{
-<<<<<<< HEAD
-        width: 34px;
-        height: 34px;
-        right: -28px;
-        top: -28px;
-=======
         width: 42px;
         height: 42px;
         right: -33px;
         top: -33px;
->>>>>>> develop
     }
 }

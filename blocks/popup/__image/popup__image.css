@@ -1,10 +1,4 @@
 .popup__image{
-<<<<<<< HEAD
-    width: auto;
-    height: calc(100vh - 180px);
-    object-fit: cover;
-=======
     max-width: 75vw;
     max-height: 75vh;
->>>>>>> develop
 }
