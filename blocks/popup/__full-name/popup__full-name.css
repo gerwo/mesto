@@ -11,7 +11,7 @@
     padding-bottom: 7px;
 }
 
-@media (max-width:468px){
+@media (max-width:520px){
     .popup__full-name{
         margin-top: 73px;
     }
