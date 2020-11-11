@@ -3,6 +3,7 @@
     margin: 0 auto;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -15,5 +16,10 @@
     flex-direction: column;
     min-height: 100vh;
     display: flex;
+>>>>>>> develop
+=======
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 >>>>>>> develop
 }

@@ -1,6 +1,6 @@
 .header{
-    flex: 0 0 auto;
     padding-top: 45px;
+<<<<<<< HEAD
 <<<<<<< HEAD
     min-height: 74px;
 <<<<<<< HEAD
@@ -12,6 +12,11 @@
 =======
     border-bottom: 1px solid #545454;
     min-height: 74px;
+>>>>>>> develop
+=======
+    min-height: 74px;
+    border-bottom: 1px solid #545454;
+    flex: 0 0 auto;
 >>>>>>> develop
 }
 
