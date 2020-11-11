@@ -17,3 +17,13 @@
 .popup__input:nth-last-child(2) {
     margin-top: 30px;
 }
+
+@media (max-width: 450px){
+    .popup__input:first-child {
+        margin-top: 28px;
+    }
+
+    .popup__input:nth-last-child(2) {
+        margin-top: 16px;
+    }
+}
