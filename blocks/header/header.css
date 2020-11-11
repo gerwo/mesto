@@ -1,8 +1,8 @@
 .header{
-    flex: 0 0 auto;
     padding-top: 45px;
-    border-bottom: 1px solid #545454;
     min-height: 74px;
+    border-bottom: 1px solid #545454;
+    flex: 0 0 auto;
 }
 
 @media(max-width:920px) and (min-width:882px){
