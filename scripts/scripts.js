@@ -60,49 +60,44 @@ const openEditForm = () => {
     visiblePopUp(editPopUp);
 }
 
-const addCards = (mass, node, position) => {
-    mass.forEach((item) => {
-        addCard(item, node, position);
-    });
+const createCardOnPosition = (node, position) => {
+    position === 'append' ? cardsNode.append(node) : cardsNode.prepend(node);
 }
 
-const addCard = (obj, node, position) => {
+const addCardFromTemplate = (obj) => {
     const cardNode = cardTemplate.content.cloneNode(true);
     const cardImage = cardNode.querySelector('.card__image');
-    
+
     cardNode.querySelector('.card__title').textContent = obj.name;
     
     cardImage.src = obj.link;
     cardImage.alt = obj.name;
+    
+    return cardNode;
+}
 
-    cardImage.addEventListener('click', () => {
+const setEventsCard = (obj, node) => {
+
+    node.querySelector('.card__image').addEventListener('click', () => {
         showImagePopup(obj.name, obj.link);
     });
     
-    cardNode.querySelector('.button_type_like').addEventListener('click', (evt) => {
+    node.querySelector('.button_type_like').addEventListener('click', (evt) => {
         const theTarget = evt.target;
         theTarget.classList.toggle('button_type_like_active');
     });
 
-    cardNode.querySelector('.button_type_delete-card').addEventListener('click', (evt) => {
+    node.querySelector('.button_type_delete-card').addEventListener('click', (evt) => {
         const theTarget = evt.target.closest('.card');
         deleteNode(theTarget)
     });
-    
-    position === 'append' ? node.append(cardNode) : node.prepend(cardNode);
 }
 
-const showImagePopup = (name, link) => {
+const createCard = (obj, position) => {
+    const node = addCardFromTemplate(obj);
     
-    const image = imageNode.querySelector('.popup__image');
-    const title = imageNode.querySelector('.popup__image-title');
-    
-    image.src = link;
-    image.alt = name;
-
-    title.textContent = name;
-
-    visiblePopUp(imageNode);
+    setEventsCard(obj, node);
+    createCardOnPosition(node, position);
 }
 
 const formSubmitNewCard = (evt) => {
@@ -116,7 +111,7 @@ const formSubmitNewCard = (evt) => {
     cardObj.name = imgTitle.value;
     cardObj.link = imgLink.value;
 
-    addCard(cardObj, cardsNode, 'prepend');
+    createCard(cardObj, 'prepend');
 
     visiblePopUp(addCardPopUp);
 
@@ -133,6 +128,25 @@ const formSubmitHandler = (evt) => {
     visiblePopUp(editPopUp);
 }
 
+const showImagePopup = (name, link) => {
+    
+    const image = imageNode.querySelector('.popup__image');
+    const title = imageNode.querySelector('.popup__image-title');
+    
+    image.src = link;
+    image.alt = name;
+
+    title.textContent = name;
+
+    visiblePopUp(imageNode);
+}
+
+const renderInitialCards = (mass, position) => {
+    mass.forEach((item) => {
+        createCard(item, position);
+    });
+}
+
 document.querySelectorAll('.button_type_close').forEach(item => {
     item.addEventListener('click', (evt) => {   
         const theTarget = evt.target.closest('.popup'); 
@@ -145,4 +159,4 @@ editButton.addEventListener('click', openEditForm);
 formEditeProfile.addEventListener('submit', formSubmitHandler);
 formAddNewCard.addEventListener('submit', formSubmitNewCard);
 
-addCards(initialCards, cardsNode, 'append');
+renderInitialCards(initialCards, 'append');
