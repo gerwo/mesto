@@ -131,12 +131,10 @@ const formSubmitHandler = (evt) => {
 const showImagePopup = (name, link) => {
     
     const image = imageNode.querySelector('.popup__image');
-    const title = imageNode.querySelector('.popup__image-title');
     
+    imageNode.querySelector('.popup__image-title').textContent = name;    
     image.src = link;
     image.alt = name;
-
-    title.textContent = name;
 
     visiblePopUp(imageNode);
 }
