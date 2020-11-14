@@ -6,6 +6,9 @@
     font-weight: 500;
     margin: 0;
     display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (max-width: 768px){
