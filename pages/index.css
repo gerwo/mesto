@@ -7,6 +7,7 @@
 @import url('../blocks/main/main.css'); 
 @import url('../blocks/logo/logo.css');
 @import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__full-name-wraper/profile__full-name-wraper.css');
 @import url('../blocks/button/button.css');
 @import url('../blocks/button/_type/button_type_add-card.css');
 @import url('../blocks/button/_type/button_type_close.css');
