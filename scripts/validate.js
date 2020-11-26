@@ -28,7 +28,7 @@ const deleteFormErrors= (popup) => {
     
 }
 
-const checkInputValidity = (input, form, config) => {  
+const checkInputValidity = (input, form, config) => {
     if(!input.validity.valid){
         showError(form, input, config);
     }
@@ -37,7 +37,7 @@ const checkInputValidity = (input, form, config) => {
     }
 }
 
-const setButtonState = (button, isActive, config) => {    
+const setButtonState = (button, isActive, config) => {
     if(isActive){
         button.classList.remove(config.inactiveButtonClass);
         button.disable = false;
