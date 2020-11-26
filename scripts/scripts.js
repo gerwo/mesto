@@ -152,7 +152,7 @@ const showImagePopup = (imageName, imageLink) => {
     
     const image = imageNode.querySelector('.popup__image');
     
-    imageNode.querySelector('.popup__image-title').textContent = name;    
+    imageNode.querySelector('.popup__image-title').textContent = imageName;    
     image.src = imageLink;
     image.alt = imageName;
 
