@@ -202,19 +202,17 @@ const enableValidation = (config) => {
 }
 
 popupList.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {   
+    popup.addEventListener('mousedown', (evt) => {   
         if(evt.target.classList.contains('popup') || evt.target.classList.contains('button_type_close')){
             popup.classList.remove('popup_opened');
         }
     });
 });
 
+enableValidation(config);
+renderInitialCards(initialCards, 'append');
 
 addCardButton.addEventListener('click', openAddCardForm);
 editButton.addEventListener('click', openEditForm);
 formEditeProfile.addEventListener('submit', formSubmitHandler);
 formAddNewCard.addEventListener('submit', formSubmitNewCard);
-
-
-enableValidation(config);
-renderInitialCards(initialCards, 'append');
