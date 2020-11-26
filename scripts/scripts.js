@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 
-const enableValidation = ({
+const config = ({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
@@ -36,7 +36,7 @@ const enableValidation = ({
 
 
 
-const popups = document.querySelectorAll('.popup');
+const popupList = document.querySelectorAll('.popup');
 const addCardButton = document.querySelector('.button_type_add-card');
 const formAddNewCard = document.querySelector('.popup__form_add-new-card');
 const addCardPopUp = document.querySelector('.popup_add-new-card');
@@ -57,24 +57,43 @@ const deleteNode = (node) => {
     node.remove();
 }
 
-const visiblePopUp = (node) => {
-    node.classList.toggle('popup_opened');
+const addSelector = (node) => {
+    node.classList.add('popup_opened');
 }
 
-const openAddCardForm = () => {
-    visiblePopUp(addCardPopUp);
+const removeSelector = (node) => {
+    node.classList.remove('popup_opened');
 }
 
-const openEditForm = () => {    
-    nameInput.value = fullName.textContent;
-    jobInput.value = occupation.textContent;
-
-    visiblePopUp(editPopUp);
+const getSubmitButton = (form, config) => {
+    return form.querySelector(config.submitButtonSelector)
 }
 
 const createCardOnPosition = (node, position) => {
     position === 'append' ? cardsNode.append(node) : cardsNode.prepend(node);
 }
+
+const openAddCardForm = () => {
+    
+    deleteFormErrors(addCardPopUp);
+    setButtonState(getSubmitButton(formAddNewCard, config), formAddNewCard.checkValidity(), config);    
+    addSelector(addCardPopUp);
+    setEscapeEvent(addCardPopUp);
+}
+
+const openEditForm = () => {    
+   
+    deleteFormErrors(editPopUp);    
+    
+    nameInput.value = fullName.textContent;
+    jobInput.value = occupation.textContent;
+
+    setButtonState(getSubmitButton(formEditeProfile, config), formEditeProfile.checkValidity(), config);
+    
+    addSelector(editPopUp);
+    setEscapeEvent(editPopUp);
+}
+
 
 const addCardFromTemplate = (obj) => {
     const cardNode = cardTemplate.content.cloneNode(true);
@@ -125,7 +144,7 @@ const formSubmitNewCard = (evt) => {
 
     createCard(cardObj, 'prepend');
 
-    visiblePopUp(addCardPopUp);
+    removeSelector(addCardPopUp);
 
     imgTitle.value = '';
     imgLink.value = '';
@@ -137,7 +156,7 @@ const formSubmitHandler = (evt) => {
     fullName.textContent = nameInput.value;
     occupation.textContent = jobInput.value;
 
-    visiblePopUp(editPopUp);
+    removeSelector(editPopUp);
 }
 
 const showImagePopup = (name, link) => {
@@ -148,7 +167,7 @@ const showImagePopup = (name, link) => {
     image.src = link;
     image.alt = name;
 
-    visiblePopUp(imageNode);
+    addSelector(imageNode);
 }
 
 const renderInitialCards = (mass, position) => {
@@ -157,18 +176,32 @@ const renderInitialCards = (mass, position) => {
     });
 }
 
+const setEscapeEvent = (popup) =>{
+    if(popup.classList.contains('popup_opened')){
+        document.addEventListener('keydown', (evt) => {
+            hidePopupByPressEscape(evt, popup);
+        });       
+    }
+    else{
+        document.removeEventListener('keydown', hidePopupByPressEscape);
+    }
+}
 
-const setEscapeEvent = () =>{
-    document.addEventListener('keydown', (evt) => {
-        if(evt.keyCode === 27){
-            popups.forEach((popup) => {
-                popup.classList.remove('popup_opened');
-            })
-        };
+const hidePopupByPressEscape = (evt, popup) => {
+    if(evt.key === "Escape"){
+        removeSelector(popup);
+    };
+}
+
+const enableValidation = (config) => {
+    const forms = document.querySelectorAll(config.formSelector);
+
+    forms.forEach((form) => {
+        setInputEvents(form, config);
     });
 }
 
-popups.forEach((popup) => {
+popupList.forEach((popup) => {
     popup.addEventListener('click', (evt) => {   
         if(evt.target.classList.contains('popup') || evt.target.classList.contains('button_type_close')){
             popup.classList.remove('popup_opened');
@@ -176,12 +209,12 @@ popups.forEach((popup) => {
     });
 });
 
+
 addCardButton.addEventListener('click', openAddCardForm);
 editButton.addEventListener('click', openEditForm);
 formEditeProfile.addEventListener('submit', formSubmitHandler);
 formAddNewCard.addEventListener('submit', formSubmitNewCard);
 
 
-enableValidationFunc(enableValidation);
-setEscapeEvent();
+enableValidation(config);
 renderInitialCards(initialCards, 'append');
