@@ -18,6 +18,7 @@ const cardsNode = document.querySelector('.cards__block');
 const imageNode = document.querySelector('.popup_image-substrate');
 const imgTitle = formAddNewCard.querySelector('.popup__input_image-title');
 const imgLink = formAddNewCard.querySelector('.popup__input_image-link');
+const image = imageNode.querySelector('.popup__image');
 
 const formEditeProfile = document.querySelector('.popup__form_edite-profile');
 const fullName = document.querySelector('.profile__full-name');
@@ -27,35 +28,43 @@ const jobInput = document.querySelector('.popup__input_occupation');
 const editButton = document.querySelector('.button_type_edite-profile');
 const editPopUp = document.querySelector('.popup_edite-profile');
 
-
 const deleteNode = (node) => {
     node.remove();
 }
 
-const hidePopupByPressEscape = (evt, popup) => {
+const popupActive = () => {
+    const popup = document.querySelector('.popup_opened');
+    return popup;
+}
+
+const hidePopupByPressEscape = (evt) => {
+    const popup = popupActive();
+
     if(evt.key === "Escape"){
         closePopup(popup);
     };
 }
 
+const searchCloseElements = (evt) => {
+    const popup = popupActive();
+
+    if(evt.target.classList.contains('popup') || evt.target.classList.contains('button_type_close')){
+        closePopup(popup);
+    }
+}
+
 const openPopup = (popup) => {
 
-    popup.addEventListener('click', (evt) => {   
-        if(evt.target.classList.contains('popup') || evt.target.classList.contains('button_type_close')){
-            closePopup(popup);
-        }
-    });
+    popup.addEventListener('click', searchCloseElements);
 
-    document.addEventListener('keydown', (evt) => {
-        hidePopupByPressEscape(evt, popup);
-    });
+    document.addEventListener('keydown', hidePopupByPressEscape);
 
     popup.classList.add('popup_opened');
 }
 
 const closePopup = (popup) => {
-
-    popup.removeEventListener('click', closePopup);
+    
+    popup.removeEventListener('click', searchCloseElements);
 
     document.removeEventListener('keydown', hidePopupByPressEscape);
 
@@ -150,8 +159,6 @@ const formSubmitHandler = (evt) => {
 
 const showImagePopup = (imageName, imageLink) => {
     
-    const image = imageNode.querySelector('.popup__image');
-    
     imageNode.querySelector('.popup__image-title').textContent = imageName;    
     image.src = imageLink;
     image.alt = imageName;
@@ -172,7 +179,6 @@ const enableValidation = (config) => {
         setInputEvents(form, config);
     });
 }
-
 
 enableValidation(config);
 renderInitialCards(initialCards, 'append');
