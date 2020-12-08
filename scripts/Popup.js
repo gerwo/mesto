@@ -39,7 +39,7 @@ export default class Popup{
 
         if(evt.key === "Escape"){
             this.close(popup);
-        };
+        }
     }
     
     _popupActive = () => {
