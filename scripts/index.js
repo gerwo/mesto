@@ -44,21 +44,20 @@ import FormValidator from './FormValidator.js';
 
     const openAddCardForm = () => {   
         
+        formAddNewCard.reset();
+
         newCardFormValidation.enableValidation();
-        newCardFormValidation.setButtonState(formAddNewCard.checkValidity());
-        
+
         currentPopup = newPopup(addCardPopUp);
         currentPopup.open();
     }
 
     const openEditForm = () => {    
-    
-        editeFormValifation.enableValidation();
         
         nameInput.value = fullName.textContent;
         jobInput.value = occupation.textContent;
-        
-        editeFormValifation.setButtonState(formEditeProfile.checkValidity());
+
+        editeFormValifation.enableValidation();
 
         currentPopup = newPopup(editPopUp);
         currentPopup.open();
@@ -72,7 +71,7 @@ import FormValidator from './FormValidator.js';
         cardObj.name = imgTitle.value;
         cardObj.link = imgLink.value;
 
-        const card = newCard(cardObj)
+        const card = newCard(cardObj);
 
         currentPopup.close();
 

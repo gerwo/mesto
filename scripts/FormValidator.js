@@ -31,7 +31,7 @@ export default class FormValidator{
         inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(input);
-                this.setButtonState(this._form.checkValidity());
+                this._setButtonState(this._form.checkValidity());
             });
         });
     }
@@ -39,8 +39,6 @@ export default class FormValidator{
     _deleteFormErrors() {
         this._button = this._popup.querySelector(this._config.submitButtonSelector);
         const form  = this._popup.querySelector(this._config.formSelector);
-
-        this._clearForm(form);
 
         form.querySelectorAll(this._config.inputSelector).forEach((input) => {
             this._hideError(input);
@@ -56,7 +54,7 @@ export default class FormValidator{
         }
     }
 
-    setButtonState(isActive) {
+    _setButtonState(isActive) {
         if(isActive){
             this._button.classList.remove(this._config.inactiveButtonClass);
             this._button.disable = false;
@@ -69,5 +67,6 @@ export default class FormValidator{
     enableValidation = () => {
         this._deleteFormErrors();
         this._setInputEvents();
+        this._setButtonState(this._form.checkValidity());
     }
 }
