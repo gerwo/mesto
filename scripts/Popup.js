@@ -13,16 +13,14 @@ export default class Popup{
     }
 
     close = () => {
-        this._view.removeEventListener('click', this._searchCloseElementsAndClosePopup);
-
-        document.removeEventListener('keydown', this._hidePopupByPressEscape);
-
         this._view.classList.remove('popup_opened');
 
         this._delete();
     }
 
     _delete = () => {
+        this._view.removeEventListener('click', this._searchCloseElementsAndClosePopup);
+        document.removeEventListener('keydown', this._hidePopupByPressEscape);
         this._view = null;
     }
 
@@ -39,7 +37,7 @@ export default class Popup{
 
         if(evt.key === "Escape"){
             this.close(popup);
-        }
+        };
     }
     
     _popupActive = () => {
