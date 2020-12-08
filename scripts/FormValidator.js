@@ -4,7 +4,6 @@ export default class FormValidator{
         this._form = form;
         this._config = config;
         this._popup = popup;
-        this._button = this._form.querySelector(this._config.submitButtonSelector);
     }
 
     _showError(input) {
@@ -37,7 +36,6 @@ export default class FormValidator{
     }
 
     _deleteFormErrors() {
-        this._button = this._popup.querySelector(this._config.submitButtonSelector);
         const form  = this._popup.querySelector(this._config.formSelector);
 
         form.querySelectorAll(this._config.inputSelector).forEach((input) => {
@@ -65,6 +63,7 @@ export default class FormValidator{
         }
     }
     enableValidation = () => {
+        this._button = this._form.querySelector(this._config.submitButtonSelector);
         this._deleteFormErrors();
         this._setInputEvents();
         this._setButtonState(this._form.checkValidity());
