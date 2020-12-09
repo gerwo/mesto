@@ -1,7 +1,7 @@
-import config from './config.js'
-import initialCards from './initial-cards.js'
-import Card from './Card.js'
-import Popup from './Popup.js'
+import config from './config.js';
+import initialCards from './initial-cards.js';
+import Card from './Card.js';
+import Popup from './Popup.js';
 import FormValidator from './FormValidator.js';
 
 (function(){
@@ -13,6 +13,7 @@ import FormValidator from './FormValidator.js';
     const imageNode = document.querySelector('.popup_image-substrate');
     const imgTitle = formAddNewCard.querySelector('.popup__input_image-title');
     const imgLink = formAddNewCard.querySelector('.popup__input_image-link');
+    const templateCard = document.querySelector('#card-template').content;
 
     const formEditeProfile = document.querySelector('.popup__form_edite-profile');
     const fullName = document.querySelector('.profile__full-name');
@@ -27,20 +28,37 @@ import FormValidator from './FormValidator.js';
 
     let currentPopup;
 
-    const popUp = (...args) => new Popup(...args);
+    const isNewCard = (item) => {
+        return new Card(templateCard, item, showImagePopup).generateCard(cardsNode);   
+    };
 
-    const newCard = (item) => {
-        return new Card(item, popUp, imageNode).render(cardsNode);
-    }
-    const newPopup = (node) => {
+    const createCardToDOM = (card)  => {
+        cardsNode.prepend(card);
+    };
+
+    const showImagePopup = (cardObj) => {
+        
+        const popup = isNewPopup(imageNode);
+        const image = imageNode.querySelector('.popup__image');
+
+        imageNode.querySelector('.popup__image-title').textContent = cardObj.name;  
+        
+        image.src = cardObj.link;
+        image.alt = cardObj.name;
+
+        popup.open();
+    };
+
+    const isNewPopup = (node) => {
         return new Popup(node);
-    }
+    };
 
     const renderInitialCards = (initialCards) => {
         initialCards.forEach((item) => {
-            const card = newCard(item);
+            const card = isNewCard(item);
+            createCardToDOM(card);
         });
-    }
+    };
 
     const openAddCardForm = () => {   
         
@@ -48,9 +66,9 @@ import FormValidator from './FormValidator.js';
 
         newCardFormValidation.enableValidation();
 
-        currentPopup = newPopup(addCardPopUp);
+        currentPopup = isNewPopup(addCardPopUp);
         currentPopup.open();
-    }
+    };
 
     const openEditForm = () => {    
         
@@ -59,9 +77,9 @@ import FormValidator from './FormValidator.js';
 
         editeFormValifation.enableValidation();
 
-        currentPopup = newPopup(editPopUp);
+        currentPopup = isNewPopup(editPopUp);
         currentPopup.open();
-    }
+    };
 
     const formSubmitNewCard = (evt) => {
         evt.preventDefault();
@@ -71,13 +89,15 @@ import FormValidator from './FormValidator.js';
         cardObj.name = imgTitle.value;
         cardObj.link = imgLink.value;
 
-        const card = newCard(cardObj);
+        const card = isNewCard(cardObj);
+        
+        createCardToDOM(card);
 
         currentPopup.close();
 
         imgTitle.value = '';
         imgLink.value = '';
-    }
+    };
 
     const formSubmitHandler = (evt) => {
         evt.preventDefault();
@@ -86,7 +106,7 @@ import FormValidator from './FormValidator.js';
         occupation.textContent = jobInput.value;
 
         currentPopup.close();
-    }
+    };
 
     addCardButton.addEventListener('click', openAddCardForm);
     editButton.addEventListener('click', openEditForm);

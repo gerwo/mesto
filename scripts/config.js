@@ -7,4 +7,4 @@ const config = ({
     errorClass: 'popup__error_visible'
 });
 
-export default config
+export default config;
