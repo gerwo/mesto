@@ -1,15 +1,13 @@
 export default class Card{
 
-    static template = document.querySelector('#card-template').content;
-
-    constructor(cardObj, popup, popupNode) {
+    constructor(template, cardObj, func) {
+        this._template = template;
         this._cardObj = cardObj;
-        this._popUp = popup;
-        this._popupNode = popupNode;
+        this._func = func;
     }
 
-    _addCardFromTemplate = () => {
-        this._view = Card.template.cloneNode(true).children[0];
+    _addCardFromTemplate() {
+        this._view = this._template.cloneNode(true).children[0];
 
         const cardImage = this._view.querySelector('.card__image');
 
@@ -21,10 +19,10 @@ export default class Card{
         return this._view;
     }
 
-    _setEventsListeners = () => {
+    _setEventsListeners() {
         
         this._view.querySelector('.card__image').addEventListener('click', () => {
-            this._showImagePopup();
+            this._func(this._cardObj);
         });
         
         this._view.querySelector('.button_type_like').addEventListener('click', (evt) => {
@@ -38,30 +36,15 @@ export default class Card{
         });
     }
 
-    _showImagePopup = () => {
-        this._popupNode.querySelector('.popup__image-title').textContent = this._cardObj.name;  
-        
-        const image = this._popupNode.querySelector('.popup__image');
-        
-        image.src = this._cardObj.link;
-        image.alt = this._cardObj.name;
-
-        this._popUp(this._popupNode).open();
-    }
-
-    _delete = () => {
+    _delete() {
         this._view.remove();
         this._view = null;
     }
 
-    _create = (card, cardsNode) => {
-        cardsNode.prepend(card);
-    }
-
-    render = (cardsNode) => {
+    generateCard() {
         const card = this._addCardFromTemplate();
-        this._create(card, cardsNode);
         this._setEventsListeners();
         
+        return card;
     }
 }
