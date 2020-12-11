@@ -28,7 +28,7 @@ import FormValidator from './FormValidator.js';
 
     let currentPopup;
 
-    const isNewCard = (item) => {
+    const getNewCard = (item) => {
         return new Card(templateCard, item, showImagePopup).generateCard(cardsNode);   
     };
 
@@ -38,7 +38,7 @@ import FormValidator from './FormValidator.js';
 
     const showImagePopup = (cardObj) => {
         
-        const popup = isNewPopup(imageNode);
+        const popup = getNewPopup(imageNode);
         const image = imageNode.querySelector('.popup__image');
 
         imageNode.querySelector('.popup__image-title').textContent = cardObj.name;  
@@ -49,13 +49,13 @@ import FormValidator from './FormValidator.js';
         popup.open();
     };
 
-    const isNewPopup = (node) => {
+    const getNewPopup = (node) => {
         return new Popup(node);
     };
 
     const renderInitialCards = (initialCards) => {
         initialCards.forEach((item) => {
-            const card = isNewCard(item);
+            const card = getNewCard(item);
             createCardToDOM(card);
         });
     };
@@ -66,7 +66,7 @@ import FormValidator from './FormValidator.js';
 
         newCardFormValidation.enableValidation();
 
-        currentPopup = isNewPopup(addCardPopUp);
+        currentPopup = getNewPopup(addCardPopUp);
         currentPopup.open();
     };
 
@@ -77,7 +77,7 @@ import FormValidator from './FormValidator.js';
 
         editeFormValifation.enableValidation();
 
-        currentPopup = isNewPopup(editPopUp);
+        currentPopup = getNewPopup(editPopUp);
         currentPopup.open();
     };
 
@@ -89,7 +89,7 @@ import FormValidator from './FormValidator.js';
         cardObj.name = imgTitle.value;
         cardObj.link = imgLink.value;
 
-        const card = isNewCard(cardObj);
+        const card = getNewCard(cardObj);
         
         createCardToDOM(card);
 
