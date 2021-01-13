@@ -7,7 +7,7 @@ export default class Popup{
     open = () => {
         this._view.addEventListener('click', this._searchCloseElementsAndClosePopup);
 
-        document.addEventListener('keydown', this._hidePopupByPressEscape);
+        document.addEventListener('keydown', this._handleEscClose);
 
         this._view.classList.add('popup_opened');
     }
@@ -20,7 +20,7 @@ export default class Popup{
 
     _removeEventListeners = () => {
         this._view.removeEventListener('click', this._searchCloseElementsAndClosePopup); 
-        document.removeEventListener('keydown', this._hidePopupByPressEscape); 
+        document.removeEventListener('keydown', this._handleEscClose); 
         this._view = null;
     }
 
@@ -32,7 +32,7 @@ export default class Popup{
         }
     }
 
-    _hidePopupByPressEscape = (evt) => {
+    _handleEscClose = (evt) => {
         const popup = this._isPopupActive();
 
         if(evt.key === "Escape"){

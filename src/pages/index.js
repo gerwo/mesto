@@ -1,8 +1,10 @@
-import config from './config.js';
-import initialCards from './initial-cards.js';
-import Card from './Card.js';
-import Popup from './Popup.js';
-import FormValidator from './FormValidator.js';
+import './index.css';
+
+import config from '../scripts/config.js';
+import initialCards from '../scripts/initial-cards.js';
+import Card from '../scripts/Card.js';
+import Popup from '../scripts/Popup.js';
+import FormValidator from '../scripts/FormValidator.js';
 
 (function(){
 

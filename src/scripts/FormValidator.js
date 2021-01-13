@@ -62,7 +62,7 @@ export default class FormValidator{
             this._button.disable = true;
         }
     }
-    enableValidation = () => {
+    enableValidation(){
         this._button = this._form.querySelector(this._config.submitButtonSelector);
         this._deleteFormErrors();
         this._setInputEvents();
