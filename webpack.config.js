@@ -19,7 +19,7 @@ module.exports = {
   
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    compress: true,
+    compress: false,
     port: 8000,
     open : true
   },
@@ -44,7 +44,7 @@ module.exports = {
       {
         test :/\.js$/,
         loader: 'babel-loader',
-        exclude : '/node_modules/' 
+        exclude : '/node_modules/'
       },
     ],
   },

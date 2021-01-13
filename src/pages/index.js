@@ -1,119 +1,114 @@
 import './index.css';
 
-import config from '../scripts/config.js';
-import initialCards from '../scripts/initial-cards.js';
-import Card from '../scripts/Card.js';
-import Popup from '../scripts/Popup.js';
-import FormValidator from '../scripts/FormValidator.js';
+import {
+  addCardButton,
+  formAddNewCard,
+  addCardPopUp,
+  cardsNode,
+  imageNode,
+  imgTitle,
+  imgLink,
+  cardTemplate,
+  formEditeProfile,
+  fullName,
+  nameInput,
+  occupation,
+  jobInput,
+  editButton,
+  editPopUp,
+  config,
+  initialCards
+} from '../utils/constants.js';
+
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo';
 
 (function(){
 
-    const addCardButton = document.querySelector('.button_type_add-card');
-    const formAddNewCard = document.querySelector('.popup__form_add-new-card');
-    const addCardPopUp = document.querySelector('.popup_add-new-card');
-    const cardsNode = document.querySelector('.cards__block');
-    const imageNode = document.querySelector('.popup_image-substrate');
-    const imgTitle = formAddNewCard.querySelector('.popup__input_image-title');
-    const imgLink = formAddNewCard.querySelector('.popup__input_image-link');
-    const templateCard = document.querySelector('#card-template').content;
+  const editeFormValifation = new FormValidator(formEditeProfile, config, editPopUp);
+  const newCardFormValidation = new FormValidator(formAddNewCard, config, addCardPopUp);
 
-    const formEditeProfile = document.querySelector('.popup__form_edite-profile');
-    const fullName = document.querySelector('.profile__full-name');
-    const nameInput = document.querySelector('.popup__input_full-name');
-    const occupation = document.querySelector('.profile__occupation');
-    const jobInput = document.querySelector('.popup__input_occupation');
-    const editButton = document.querySelector('.button_type_edite-profile');
-    const editPopUp = document.querySelector('.popup_edite-profile');
 
-    const editeFormValifation = new FormValidator(formEditeProfile, config, editPopUp);
-    const newCardFormValidation = new FormValidator(formAddNewCard, config, addCardPopUp);
+  /*const userInfo = new UserInfo({
+    nameSelector : nameInput,
+    jobSelector : jobInput
+  });*/
 
-    let currentPopup;
+  const cardList = new Section({
+    renderer: (item) => {
+      const card = createCard(item);
+      
+      cardList.addItem(card);
+    }
+  }, cardsNode);
 
-    const getNewCard = (item) => {
-        return new Card(templateCard, item, showImagePopup).generateCard(cardsNode);   
-    };
+  const createCard = ({name, link}) => {
+    const card = new Card({
+      cardTemplate,
+      name,
+      link,
+      handleCardClick: ()=>{
+        const popup = new PopupWithImage(imageNode);
+        popup.setEventListeners();
 
-    const createCardToDOM = (card)  => {
-        cardsNode.prepend(card);
-    };
+        popup.open({name, link});
+      }});
+      
+      return card.generateCard();
+  };
 
-    const showImagePopup = (cardObj) => {
-        
-        const popup = getNewPopup(imageNode);
-        const image = imageNode.querySelector('.popup__image');
+  const formSubmitNewCard = (evt) => {
+    evt.preventDefault();
 
-        imageNode.querySelector('.popup__image-title').textContent = cardObj.name;  
-        
-        image.src = cardObj.link;
-        image.alt = cardObj.name;
+    const link = imgLink.value;
+    const name = imgTitle.value;
 
-        popup.open();
-    };
-
-    const getNewPopup = (node) => {
-        return new Popup(node);
-    };
-
-    const renderInitialCards = (initialCards) => {
-        initialCards.forEach((item) => {
-            const card = getNewCard(item);
-            createCardToDOM(card);
-        });
-    };
-
-    const openAddCardForm = () => {   
-        
-        formAddNewCard.reset();
-
-        newCardFormValidation.enableValidation();
-
-        currentPopup = getNewPopup(addCardPopUp);
-        currentPopup.open();
-    };
-
-    const openEditForm = () => {    
-        
-        nameInput.value = fullName.textContent;
-        jobInput.value = occupation.textContent;
-
-        editeFormValifation.enableValidation();
-
-        currentPopup = getNewPopup(editPopUp);
-        currentPopup.open();
-    };
-
-    const formSubmitNewCard = (evt) => {
-        evt.preventDefault();
-
-        const cardObj = {};
-
-        cardObj.name = imgTitle.value;
-        cardObj.link = imgLink.value;
-
-        const card = getNewCard(cardObj);
-        
-        createCardToDOM(card);
-
-        currentPopup.close();
-
-        imgTitle.value = '';
-        imgLink.value = '';
-    };
-
-    const formSubmitHandler = (evt) => {
-        evt.preventDefault();
-
-        fullName.textContent = nameInput.value;
-        occupation.textContent = jobInput.value;
-
-        currentPopup.close();
-    };
-
-    addCardButton.addEventListener('click', openAddCardForm);
-    editButton.addEventListener('click', openEditForm);
-    formEditeProfile.addEventListener('submit', formSubmitHandler);
-    formAddNewCard.addEventListener('submit', formSubmitNewCard);
+    const card = createCard({name, link});
     
-    renderInitialCards(initialCards);
+    cardList.addItem(card);
+
+    imgTitle.value = '';
+    imgLink.value = '';
+  };
+
+  cardList.renderItems(initialCards);
+
+
+  const openAddCardForm = () => {
+      
+      formAddNewCard.reset();
+      newCardFormValidation.enableValidation();
+      const popup = new PopupWithForm(addCardPopUp);
+      popup.setEventListeners();
+      popup.open();
+  };
+
+  const openEditForm = () => {    
+      
+      nameInput.value = fullName.textContent;
+      jobInput.value = occupation.textContent;
+
+      editeFormValifation.enableValidation();
+
+      const popup = new PopupWithForm(editPopUp);
+      popup.setEventListeners();
+      popup.open();
+  };
+
+  const formSubmitHandler = (evt) => {
+      evt.preventDefault();
+
+      fullName.textContent = nameInput.value;
+      occupation.textContent = jobInput.value;
+  };
+
+
+  addCardButton.addEventListener('click', openAddCardForm);
+  editButton.addEventListener('click', openEditForm);
+  formEditeProfile.addEventListener('submit', formSubmitHandler);
+  formAddNewCard.addEventListener('submit', formSubmitNewCard);
 })();
