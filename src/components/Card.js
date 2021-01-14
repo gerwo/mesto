@@ -4,25 +4,24 @@ export default class Card{
     this._cardTemplate = cardTemplate;
     this._name = name;
     this._link = link;
+    this._view = this._cardTemplate.cloneNode(true).children[0];
+    this._cardImage = this._view.querySelector('.card__image');
     this._handleCardClick = handleCardClick;
   }
 
   _addCardFromTemplate() {
-    this._view = this._cardTemplate.cloneNode(true).children[0];
-
-    const cardImage = this._view.querySelector('.card__image');
 
     this._view.querySelector('.card__title').textContent = this._name;
     
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
       
       return this._view;
   }
 
   _setEventsListeners() {
       
-    this._view.querySelector('.card__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
         this._handleCardClick();
     });
     
