@@ -64,8 +64,7 @@ import UserInfo from '../components/UserInfo';
   const editProfileForm = document.querySelector(formEditeProfileSelector);
   const editeFormValifation = new FormValidator({
     form : editProfileForm, 
-    config : config,
-    popup : editProfilePopup
+    config : config
   });
   
   editeFormValifation.enableValidation();
@@ -73,8 +72,7 @@ import UserInfo from '../components/UserInfo';
   const addCardForm = document.querySelector(formAddNewCardSelector)
   const newCardFormValidation = new FormValidator({
     form : addCardForm, 
-    config : config,
-    popup: addCardPopUpSelector
+    config : config
   });
   
   newCardFormValidation.enableValidation();

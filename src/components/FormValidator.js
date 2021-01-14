@@ -1,10 +1,9 @@
 export default class FormValidator{
 
-    constructor({form, config, popup}){
+    constructor({form, config}){
       this._form = form;
       this._config = config;
-      this._inputList = this._form.querySelectorAll('input');
-      this._popup = popup;
+      this._inputList = this._form.querySelectorAll(this._config.inputSelector);
     }
 
     _showError(input) {
@@ -63,7 +62,7 @@ export default class FormValidator{
     }
     
     enableValidation(){
-      this._button = this._form.querySelector('button');
+      this._button = this._form.querySelector(this._config.submitButtonSelector);
       this._setInputEvents();
     }
 }
