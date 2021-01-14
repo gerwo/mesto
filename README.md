@@ -5,10 +5,13 @@
 Данный проект из Яндекс Практикум.
 
 ## Используемые методологии
-- БЭМ
-- БЭМ nested
+* БЭМ
+* БЭМ nested
 
 ## Используемые технологии
-- flexbox
-- grid layout
+* flexbox
+* grid layout
+* Git + Bash
+* NPM: Webpack, Babel,
+* JavaScript (ES6+)
 
