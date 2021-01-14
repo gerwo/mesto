@@ -1,9 +1,9 @@
 export default class FormValidator{
 
-    constructor(form, config, popup){
+    constructor(form, config, popupSelector){
         this._form = form;
         this._config = config;
-        this._popup = popup;
+        this._popup = document.querySelector(popupSelector);
     }
 
     _showError(input) {

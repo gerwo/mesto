@@ -1,21 +1,21 @@
-//элементы секции cards
-const addCardButton = document.querySelector('.button_type_add-card');
-const formAddNewCard = document.querySelector('.popup__form_add-new-card');
-const addCardPopUp = document.querySelector('.popup_add-new-card');
-const cardsNode = document.querySelector('.cards__block');
-const imageNode = document.querySelector('.popup_image-substrate');
-const imgTitle = formAddNewCard.querySelector('.popup__input_image-title');
-const imgLink = formAddNewCard.querySelector('.popup__input_image-link');
+//Cards
+const addCardButtonSelector = '.button_type_add-card';
+const addCardPopUpSelector = '.popup_add-new-card';
+const cardsNodeSelector = '.cards__block';
+const imageNodeSelector = '.popup_image-substrate';
+const formAddNewCardSelector = '.popup__form_add-new-card';
+const imgTitlSelector = '.popup__input_image-title';
+const imgLinkSelector = '.popup__input_image-link';
 const cardTemplate = document.querySelector('#card-template').content;
 
-//элементы секции profile
-const formEditeProfile = document.querySelector('.popup__form_edite-profile');
-const fullName = document.querySelector('.profile__full-name');
-const nameInput = document.querySelector('.popup__input_full-name');
-const occupation = document.querySelector('.profile__occupation');
-const jobInput = document.querySelector('.popup__input_occupation');
-const editButton = document.querySelector('.button_type_edite-profile');
-const editPopUp = document.querySelector('.popup_edite-profile');
+//Profile
+const formEditeProfileSelector = '.popup__form_edite-profile';
+const fullNameSelector = '.profile__full-name';
+const nameInputSelector = '.popup__input_full-name';
+const occupationSelector = '.profile__occupation';
+const jobInputSelector = '.popup__input_occupation';
+const editButtonSelector = '.button_type_edite-profile';
+const editPopUpSelector = '.popup_edite-profile';
 
 const config = ({
   formSelector: '.popup__form',
@@ -54,21 +54,21 @@ const initialCards = [
 ];
 
 export {
-  addCardButton,
-  formAddNewCard,
-  addCardPopUp,
-  cardsNode,
-  imageNode,
-  imgTitle,
-  imgLink,
+  addCardButtonSelector,
+  formAddNewCardSelector,
+  addCardPopUpSelector,
+  cardsNodeSelector,
+  imageNodeSelector,
+  imgTitlSelector,
+  imgLinkSelector,
   cardTemplate,
-  formEditeProfile,
-  fullName,
-  nameInput,
-  occupation,
-  jobInput,
-  editButton,
-  editPopUp,
+  formEditeProfileSelector,
+  fullNameSelector,
+  nameInputSelector,
+  occupationSelector,
+  jobInputSelector,
+  editButtonSelector,
+  editPopUpSelector,
   config,
   initialCards
 }
