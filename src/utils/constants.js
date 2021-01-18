@@ -11,7 +11,7 @@ const formEditeProfileSelector = '.popup__form_edite-profile';
 const fullNameSelector = '.profile__full-name';
 const nameInput = document.querySelector('.popup__input_full-name');
 const occupationSelector = '.profile__occupation';
-const jobInput = document.querySelector('.popup__input_occupation');
+const aboutInput = document.querySelector('.popup__input_occupation');
 const editButtonSelector = '.button_type_edite-profile';
 const editPopUpSelector = '.popup_edite-profile';
 
@@ -62,7 +62,7 @@ export {
   fullNameSelector,
   nameInput,
   occupationSelector,
-  jobInput,
+  aboutInput,
   editButtonSelector,
   editPopUpSelector,
   config,

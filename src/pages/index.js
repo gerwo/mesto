@@ -11,13 +11,13 @@ import {
   fullNameSelector,
   nameInput,
   occupationSelector,
-  jobInput,
+  aboutInput,
   editButtonSelector,
   editPopUpSelector,
   config,
-  initialCards
 } from '../utils/constants.js';
 
+import Api from '../components/Api';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -25,20 +25,32 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo';
 
+
 (function(){
+
+  const api = new Api({
+    url : 'https://mesto.nomoreparties.co/v1/',
+    token : 'a2645d68-6dae-4ace-a29b-319c06bb5839',
+    group : 'cohort-19'
+  });
 
   const userInfo = new UserInfo({
     nameSelector : fullNameSelector,
-    jobSelector : occupationSelector
+    aboutSelector : occupationSelector
   });
 
   const editProfilePopup = new PopupWithForm({
     popupSelector: editPopUpSelector,
     handleFormSubmit : (inputsValues) => {
       
-      userInfo.setUserInfo({
+      api.setUserInfo({
         name : inputsValues.name,
-        job : inputsValues.occupation
+        about : inputsValues.occupation
+      }).then((result)=>{
+        userInfo.setUserInfo({
+          name : result.name,
+          about : result.about
+        });
       });
     }
   });
@@ -48,14 +60,19 @@ import UserInfo from '../components/UserInfo';
   const addCardPopUp = new PopupWithForm({
     popupSelector: addCardPopUpSelector,
     handleFormSubmit : (inputsValues) => {  
-      console.log(inputsValues)
-      const card = createCard({
-        name : inputsValues['image-title'], 
-        link : inputsValues['image-link']
-      });
       
-      cardList.addItem(card);
+      const name = inputsValues['image-title'];
+      const link = inputsValues['image-link']
+      
+      api.addCard({name, link}).then(result => {
+        console.log(result);
+        const card = createCard({
+          name : result.name, 
+          link : result.link
+        });
 
+        cardList.addItem(card);
+      })
     } 
   });
 
@@ -112,14 +129,23 @@ import UserInfo from '../components/UserInfo';
     const profileData = userInfo.getUserInfo();
     
     nameInput.value = profileData.name;
-    jobInput.value = profileData.job;
+    aboutInput.value = profileData.about;
     
     editeFormValifation.resetValidation();
 
     editProfilePopup.open();
   };
 
-  cardList.renderItems(initialCards);
+  api.getCards().then(result => {
+    cardList.renderItems(result);
+  });
+
+  api.getUserInfo().then(result => {
+    userInfo.setUserInfo({
+      name : result.name,
+      about : result.about
+    });
+  })
 
   document.querySelector(addCardButtonSelector).addEventListener('click', openAddCardForm);
   document.querySelector(editButtonSelector).addEventListener('click', openEditForm);
