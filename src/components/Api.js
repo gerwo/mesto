@@ -1,13 +1,12 @@
 export default class Api{
   
-  constructor({url, token, group}){
+  constructor({url, token}){
     this._url = url;
     this._token = token;
-    this._group = group;
   }
 
   getCards() {
-    return fetch(`${this._url}/${this._group}/cards`, {
+    return fetch(`${this._url}/cards`, {
       headers : {
         authorization: this._token
       }
@@ -16,7 +15,7 @@ export default class Api{
   }
 
   addCard({name, link}){
-    return fetch(`${this._url}/${this._group}/cards`, {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers : {
         authorization: this._token,
@@ -31,7 +30,7 @@ export default class Api{
   }
 
   getUserInfo(){
-    return fetch(`${this._url}/${this._group}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       headers : {
         authorization: this._token
       }
@@ -40,7 +39,7 @@ export default class Api{
   }
 
   setUserInfo({name, about}){
-    return fetch(`${this._url}/${this._group}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers : {
         authorization: this._token,
@@ -55,7 +54,7 @@ export default class Api{
   }
 
   setUserAvatar({avatar}) {
-    return fetch(`${this._url}/${this._group}/users/me/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers : {
         authorization: this._token,
@@ -64,6 +63,30 @@ export default class Api{
       body : JSON.stringify({
         avatar : avatar 
       })
+    })
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+  }
+  
+  deleteCard({cardId}) {
+
+  }
+
+  likeCard({cardId}) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers : {
+        authorization: this._token
+      }
+    })
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+  }
+
+  unlikeCard(cardId) {
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers : {
+        authorization: this._token
+      }
     })
       .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
   }
