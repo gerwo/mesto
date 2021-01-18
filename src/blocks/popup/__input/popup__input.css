@@ -10,20 +10,21 @@
     padding-bottom: 7px;
 }
 
+.popup__input:nth-last-child(3) {
+  margin-top: 12px;
+}
+
 .popup__input:first-child {
     margin-top: 45px;
 }
 
-.popup__input:nth-last-child(3) {
-    margin-top: 12px;
-}
-
 @media (max-width: 520px){
-    .popup__input:first-child {
-        margin-top: 28px;
-    }
 
-    .popup__input:nth-last-child(2) {
-        margin-top: 16px;
-    }
+  .popup__input:nth-last-child(2) {
+    margin-top: 16px;
+  }
+
+  .popup__input:first-child {
+      margin-top: 28px;
+  }
 }

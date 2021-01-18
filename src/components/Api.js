@@ -53,4 +53,18 @@ export default class Api{
     })
       .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
   }
+
+  setUserAvatar({avatar}) {
+    return fetch(`${this._url}/${this._group}/users/me/avatar`, {
+      method: 'PATCH',
+      headers : {
+        authorization: this._token,
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({
+        avatar : avatar 
+      })
+    })
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+  }
 }

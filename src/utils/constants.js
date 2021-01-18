@@ -10,10 +10,16 @@ const cardTemplate = document.querySelector('#card-template').content;
 const formEditeProfileSelector = '.popup__form_edite-profile';
 const fullNameSelector = '.profile__full-name';
 const nameInput = document.querySelector('.popup__input_full-name');
+const avatarInput = document.querySelector('.popup__input_avatar-link');
 const occupationSelector = '.profile__occupation';
 const aboutInput = document.querySelector('.popup__input_occupation');
 const editButtonSelector = '.button_type_edite-profile';
 const editPopUpSelector = '.popup_edite-profile';
+const popupConfirmSelector = '.popup_confirm';
+const avatarSelector = '.profile__avatar';
+const formEditAvatarSelector = '.popup__form_edit-avatar';
+const editAvatarPopupSelector = '.popup_edit-avatar';
+const editButtonAvatarSelector = '.button_type_edite-avatar';
 
 const config = ({
   formSelector: '.popup__form',
@@ -61,10 +67,16 @@ export {
   formEditeProfileSelector,
   fullNameSelector,
   nameInput,
+  avatarInput,
   occupationSelector,
   aboutInput,
   editButtonSelector,
   editPopUpSelector,
   config,
-  initialCards
+  initialCards,
+  popupConfirmSelector,
+  avatarSelector,
+  formEditAvatarSelector,
+  editAvatarPopupSelector,
+  editButtonAvatarSelector
 }
