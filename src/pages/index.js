@@ -35,11 +35,18 @@ import UserInfo from '../components/UserInfo';
 
 (function(){
 
+  const editAvatarForm = document.querySelector(formEditAvatarSelector);
+  const editProfileForm = document.querySelector(formEditeProfileSelector);
+  const addCardForm = document.querySelector(formAddNewCardSelector);
+
   let userId;
 
   const api = new Api({
     url : 'https://mesto.nomoreparties.co/v1/cohort-19',
-    token : 'a2645d68-6dae-4ace-a29b-319c06bb5839',
+    headers :{
+      authorization : 'a2645d68-6dae-4ace-a29b-319c06bb5839',
+      'Content-Type' : 'application/json'
+    }
   });
 
   const userInfo = new UserInfo({
@@ -49,20 +56,38 @@ import UserInfo from '../components/UserInfo';
   });
 
   const confirm = new PopupWithConfirm({
-    popupSelector : popupConfirmSelector
-  })
+    popupSelector : popupConfirmSelector,
+    handleConfirmSubmit : (card, button) => {
+      renderLoading(button, 'delete');
+      api.deleteCard({
+          cardId : card._id
+        })
+        .then(() => {
+          card.remove();
+        })
+        .catch((err) => {
+          consoleLogError(err);
+        })
+        .finally(()=>{
+          confirm.close();
+          setTimeout(renderLoading, 1000, button, 'confirm');
+        });
+    }
+  });
   
+  confirm.setEventListeners()
 
   const editProfilePopup = new PopupWithForm({
     popupSelector: editPopUpSelector,
-    handleFormSubmit : (inputsValues) => {
+    handleFormSubmit : (inputsValues, button) => {
+      
+      renderLoading(button, 'saving');
       
       api.setUserInfo({
         name : inputsValues.name,
         about : inputsValues.occupation
       })
         .then((result)=>{
-
           userInfo.setUserInfo({
             avatar : result.avatar,
             name : result.name,
@@ -71,7 +96,11 @@ import UserInfo from '../components/UserInfo';
         })
         .catch((err) => {
           consoleLogError(err);
-        });;
+        })
+        .finally(() => {
+          editProfilePopup.close();
+          setTimeout(renderLoading, 1000, button, 'save');
+        });
     }
   });
   
@@ -79,8 +108,8 @@ import UserInfo from '../components/UserInfo';
 
   const editAvatarPopup = new PopupWithForm({
     popupSelector: editAvatarPopupSelector,
-    handleFormSubmit : (inputsValues) => {
-      
+    handleFormSubmit : (inputsValues, button) => {
+      renderLoading(button, 'saving');
       api.setUserAvatar({
         avatar : inputsValues.avatar
       })
@@ -94,7 +123,11 @@ import UserInfo from '../components/UserInfo';
         })
         .catch((err) => {
           consoleLogError(err);
-        });;
+        })
+        .finally(() => {
+          editAvatarPopup.close();
+          setTimeout(renderLoading, 1000, button, 'save');
+        });
     }
   });
 
@@ -102,8 +135,8 @@ import UserInfo from '../components/UserInfo';
 
   const addCardPopUp = new PopupWithForm({
     popupSelector: addCardPopUpSelector,
-    handleFormSubmit : (inputsValues) => {  
-      
+    handleFormSubmit : (inputsValues, button) => {  
+      renderLoading(button, 'saving');
       const name = inputsValues['image-title'];
       const link = inputsValues['image-link'];
       
@@ -123,7 +156,8 @@ import UserInfo from '../components/UserInfo';
           consoleLogError(err);
         })
         .finally(() => {
-
+          setTimeout(renderLoading, 1000, button, 'create');
+          addCardPopUp.close();
         });
     } 
   });
@@ -146,26 +180,32 @@ import UserInfo from '../components/UserInfo';
       handleCardClick: ()=>{                
         popupImage.open({name, link});
       },
-      handleLikeClick: (cardId) => {
-        if(card.isLiked){
-          api.likeCard({cardId})
+      handleLikeClick: () => {
+        if(!card.isLiked()){
+          api.likeCard({cardId : card._id})
             .then((result) => {
+              card.setLikesCount(result.likes.length);
+              card.likeCard();
             })
             .catch((err) => {
               consoleLogError(err);
-            })
+            });
         }
         else{
-          api.unlikeCard({cardId})
+          console.log(card._id);
+          api.unlikeCard({cardId : card._id})
             .then((result) => {
-           })
-           .catch((err) => {
-            consoleLogError(err);
-          })
+              console.log(result.likes.length)
+              card.setLikesCount(result.likes.length);
+              card.likeCard();
+            })
+            .catch((err) => {
+              consoleLogError(err);
+            });
         }
       },
-      handleDeleteClick: (cardId) => {
-
+      handleDeleteClick: () => {
+        confirm.open(card);
       }    
     }, userId);
       
@@ -182,7 +222,7 @@ import UserInfo from '../components/UserInfo';
   }, cardsNodeSelector);
 
   const openAddCardForm = () => {    
-    newCardFormValidation.resetValidation();    
+    newCardFormValidation.resetValidation();  
     addCardPopUp.open();
   };
 
@@ -201,12 +241,10 @@ import UserInfo from '../components/UserInfo';
   const openEditAvatarForm = () => {
     
     editAvatarFormValidation.resetValidation();
-
     editAvatarPopup.open();
 
-  }
+  };
 
-  const editAvatarForm = document.querySelector(formEditAvatarSelector);
   
   const editAvatarFormValidation = new FormValidator({
     form : editAvatarForm, 
@@ -215,8 +253,6 @@ import UserInfo from '../components/UserInfo';
   
   editAvatarFormValidation.enableValidation();
 
-
-  const editProfileForm = document.querySelector(formEditeProfileSelector);
   const editeFormValifation = new FormValidator({
     form : editProfileForm, 
     config : config
@@ -224,8 +260,6 @@ import UserInfo from '../components/UserInfo';
   
   editeFormValifation.enableValidation();
 
-
-  const addCardForm = document.querySelector(formAddNewCardSelector)
   const newCardFormValidation = new FormValidator({
     form : addCardForm, 
     config : config
@@ -256,14 +290,31 @@ import UserInfo from '../components/UserInfo';
       consoleLogError(err);
     });
 
-  const renderLoading = (button, isLoading) => {
-    return isLoading ? button.textContent = 'Сохранение...' : button.textContent = 'Сохранить';
+  const renderLoading = (button, status) => {
+    switch(status){
+      case 'delete' : 
+        button.textContent = 'Удаление...';
+        break;
+      case 'confirm' : 
+        button.textContent = 'Да';
+        break;
+      case 'create' : 
+        button.textContent = 'Создать';
+        break;
+      case 'saving' : 
+        button.textContent = 'Сохранение...';
+        break;
+      case 'save' : 
+        button.textContent = 'Сохранить';
+        break;
+      default : 
+        return;
+    }
   };
 
   const consoleLogError = (err) => {
-    console.log(err)
-  }
-
+    console.log(err);
+  };
 
   document.querySelector(editButtonAvatarSelector).addEventListener('click', openEditAvatarForm);
   document.querySelector(addCardButtonSelector).addEventListener('click', openAddCardForm);

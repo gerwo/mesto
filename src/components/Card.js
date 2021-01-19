@@ -25,6 +25,7 @@ export default class Card{
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._likeCount.textContent = this._likes.length;
+    
     if (this._owner._id !== this._userId) {
       this._deleteButton.remove();
     }
@@ -38,28 +39,15 @@ export default class Card{
 
   _setEventsListeners() {
       
-    this._cardImage.addEventListener('click', () => {
-      this._handleCardClick();
-    });
+    this._cardImage.addEventListener('click', this._handleCardClick);
     
     this._likeButton.addEventListener('click', this._handleLikeClick);
 
-    this._deleteButton.addEventListener('click', (evt) => {
-        const theTarget = evt.target.closest('.card');
-        this._delete(theTarget);
-    });
-  }
-
-  _addLike() {
-    this._handleLikeClick(this._id);
+    this._deleteButton.addEventListener('click', this._handleDeleteClick);
   }
   
-  _setLikesCount() {
-    this._likeCount.textContent = this._likes.length;
-  }
-
-  _delete() {
-    this._handleDeleteClick(this._id);
+  setLikesCount(count) {
+    this._likeCount.textContent = count;
   }
 
   likeCard() {
