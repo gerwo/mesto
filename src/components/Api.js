@@ -8,8 +8,8 @@ export default class Api{
   getCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers
-    })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      })
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 
   addCard({name, link}){
@@ -21,14 +21,14 @@ export default class Api{
         link : link 
       })
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 
   getUserInfo(){
     return fetch(`${this._url}/users/me`, {
       headers: this._headers
       })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 
   setUserInfo({name, about}){
@@ -40,7 +40,7 @@ export default class Api{
           about : about 
         })
       })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 
   setUserAvatar({avatar}) {
@@ -51,7 +51,7 @@ export default class Api{
         avatar : avatar 
       })
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
   
   deleteCard({cardId}) {
@@ -59,7 +59,7 @@ export default class Api{
       method: 'DELETE',
       headers: this._headers
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 
   likeCard({cardId}) {
@@ -67,7 +67,7 @@ export default class Api{
       method: 'PUT',
       headers: this._headers
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 
   unlikeCard({cardId}) {
@@ -75,6 +75,6 @@ export default class Api{
       method: 'DELETE',
       headers: this._headers
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result}`));
+      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
   }
 }
