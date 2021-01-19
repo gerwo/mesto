@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+<link href="main.css" rel="stylesheet"></head>
+<body class="body">
+  <div class="root">
+    <header class="header">
+      <img src="c2821b381952624d90e5.svg" class="logo" alt="Логотип Mesto"/>
+    </header>
+    <main class="main">
+      <section class="profile">
+        <div class="profile__avatar-block">
+          <img src="#" class="profile__avatar" alt="Аватар"/>
+          <button class="button button_type_edite-avatar opacity" aria-label="Редактировать" type="button"></button>
+        </div>
+        <div class="profile__info">
+          <div class="profile__full-name-wraper">
+            <h1 class="profile__full-name"></h1>
+            <button class="button button_type_edite-profile opacity" aria-label="Редактировать" type="button"></button>
+          </div>
+          <p class="profile__occupation"></p>
+        </div>
+        <button class="button button_type_add-card opacity" aria-label="Добавить карточку" type="button"></button>
+      </section>
+      <section class="cards">
+        <ul class="cards__block"></ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+  </div>
+  
+  <div class="popup popup_add-new-card" role="dialog">
+    <div class="popup__container">
+      <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_add-new-card" action="#" method="POST" name="edit-form">
+        <input 
+          type="text" 
+          class="popup__input popup__input_image-title" 
+          name="image-title" 
+          placeholder="Название" 
+          required 
+          minlength="2" 
+          maxlength="30"
+          id="image-title">
+        <span id="image-title-error" class="popup__error"></span>
+        <input 
+          type="url" 
+          class="popup__input popup__input_image-link" 
+          name="image-link" 
+          placeholder="Ссылка на картинку" 
+          required
+          id="image-link">
+        <span id="image-link-error" class="popup__error"></span>
+        <button type="submit"  class="button popup__button button_type_submit opacity">Создать</button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="popup popup_edit-avatar" role="dialog">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+      <form class="popup__form popup__form_edit-avatar" action="#" name="edit-form">
+        <input 
+          type="url" 
+          class="popup__input popup__input_avatar-link" 
+          name="avatar" 
+          placeholder="Ссылка на картинку" 
+          required
+          id="avatar">
+        <span id="avatar-error" class="popup__error"></span>
+        <button type="submit"  class="button popup__button button_type_submit opacity">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_edite-profile" role="dialog">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+      <form class="popup__form popup__form_edite-profile" action="#" name="edit-form">
+        <input 
+          type="text" 
+          class="popup__input popup__input_full-name" 
+          name="name" 
+          placeholder="ФИО" 
+          required 
+          minlength="2" 
+          maxlength="20"
+          id="full-name">
+        <span id="full-name-error" class="popup__error"></span>
+        <input 
+          type="text" 
+          class="popup__input popup__input_occupation" 
+          name="occupation" 
+          placeholder="Род деятельности" 
+          required 
+          minlength="2" 
+          maxlength="200"
+          id="occupation">
+        <span id="occupation-error" class="popup__error"></span>
+        <button type="submit"  class="button popup__button button_type_submit opacity">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_image-substrate" role="dialog">
+    <div class="popup__image-container">
+      <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+      <img class="popup__image" alt="Изображение" src="#"/>
+      <h2 class="popup__image-title"></h2>
+    </div>
+  </div>
+
+  <div class="popup popup_confirm" role="dialog">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="button button_type_close opacity" aria-label="Закрыть" type="button"></button>
+      <form class="popup__form popup__form_delete-card" action="#" name="delete-card">
+        <button type="submit"  class="button popup__button button_type_submit button_type_confirm opacity">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <template id="card-template">
+    <li class="card">
+      <img class="card__image" alt="Изображение" src="#">
+      <div class="card__content">
+        <h2 class="card__title"></h2>
+        <div class="card__like-block">
+          <button class="button button_type_like opacity" aria-label="Нравиться" type="button"></button>
+          <p class="card__like-count"></p>
+        </div>
+      </div>
+      <button class="button button_type_delete-card opacity"></button>
+    </li>
+  </template>
+<script src="index.js"></script></body>
+</html>
