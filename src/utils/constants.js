@@ -3,7 +3,6 @@ const addCardButtonSelector = '.button_type_add-card';
 const addCardPopUpSelector = '.popup_add-new-card';
 const cardsNodeSelector = '.cards__block';
 const imageNodeSelector = '.popup_image-substrate';
-const cardImageSelector = '.card__image'
 const formAddNewCardSelector = '.popup__form_add-new-card';
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -37,7 +36,6 @@ export {
   addCardPopUpSelector,
   cardsNodeSelector,
   imageNodeSelector,
-  cardImageSelector,
   cardTemplate,
   formEditeProfileSelector,
   fullNameSelector,

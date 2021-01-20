@@ -9,7 +9,7 @@ export default class Api{
     return fetch(`${this._url}/cards`, {
       headers: this._headers
       })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
 
   addCard({name, link}){
@@ -21,14 +21,14 @@ export default class Api{
         link : link 
       })
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
 
   getUserInfo(){
     return fetch(`${this._url}/users/me`, {
       headers: this._headers
       })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
 
   setUserInfo({name, about}){
@@ -40,7 +40,7 @@ export default class Api{
           about : about 
         })
       })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
 
   setUserAvatar({avatar}) {
@@ -51,7 +51,7 @@ export default class Api{
         avatar : avatar 
       })
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
   
   deleteCard({cardId}) {
@@ -59,7 +59,7 @@ export default class Api{
       method: 'DELETE',
       headers: this._headers
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
 
   likeCard({cardId}) {
@@ -67,7 +67,7 @@ export default class Api{
       method: 'PUT',
       headers: this._headers
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
   }
 
   unlikeCard({cardId}) {
@@ -75,6 +75,10 @@ export default class Api{
       method: 'DELETE',
       headers: this._headers
     })
-      .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`));
+      .then(result => this._getResponseData({result}));
+  }
+
+  _getResponseData({result}){
+    return result.ok ? result.json() : Promise.reject(new Error(`Ошибка ${result.status}`));
   }
 }

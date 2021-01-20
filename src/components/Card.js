@@ -8,19 +8,25 @@ export default class Card{
     this._id = _id;
     this._owner = owner;
     this._userId = userId;
-    this._view = this._cardTemplate.cloneNode(true).children[0];
-    this._title = this._view.querySelector('.card__title');
-    this._cardImage = this._view.querySelector(cardImageSelector);
-    this._likeButton = this._view.querySelector('.button_type_like');
-    this._likeCount = this._view.querySelector('.card__like-count');
-    this._deleteButton = this._view.querySelector('.button_type_delete-card');
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
   }
 
-  _addCardFromTemplate() {
+  _getView(){
+    this._view = this._cardTemplate.cloneNode(true).children[0];
+    return this._view;
+  }
 
+  _addCardFromTemplate() {
+    this._element = this._getView();
+
+    this._title = this._element.querySelector('.card__title');
+    this._cardImage = this._element.querySelector('.card__image');
+    this._likeButton = this._element.querySelector('.button_type_like');
+    this._likeCount = this._element.querySelector('.card__like-count');
+    this._deleteButton = this._element.querySelector('.button_type_delete-card');
+    
     this._title.textContent = this._name;    
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -34,12 +40,14 @@ export default class Card{
       this.likeCard();
     }
       
-    return this._view;
+    return this._element;
   }
 
   _setEventsListeners() {
       
-    this._cardImage.addEventListener('click', this._handleCardClick);
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick({name : this._name, link: this._link});
+    });
     
     this._likeButton.addEventListener('click', this._handleLikeClick);
 
@@ -58,7 +66,7 @@ export default class Card{
     return this._likeButton.classList.contains('button_type_like_active');
   }
 
-  remove() {
+  removeCard() {
     this._view.remove();
     this._view = null;
   }
